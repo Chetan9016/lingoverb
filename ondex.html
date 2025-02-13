@@ -1,0 +1,216 @@
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Language Learning App - User Authentication
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap" rel="stylesheet"/>
+ </head>
+ <body class="font-roboto bg-gray-100">
+  <main class="container mx-auto p-4">
+   <section class="max-w-md mx-auto bg-white p-6 rounded shadow-md">
+    <h2 class="text-xl font-bold mb-4">
+     User Authentication
+    </h2>
+    <form onsubmit="event.preventDefault(); showLanguageSelection();">
+     <div class="mb-4">
+      <label class="block text-gray-700 mb-2" for="email">
+       Email
+      </label>
+      <input class="w-full p-2 border border-gray-300 rounded" id="email" name="email" placeholder="Enter your email" type="email"/>
+     </div>
+     <div class="mb-4">
+      <label class="block text-gray-700 mb-2" for="password">
+       Password
+      </label>
+      <input class="w-full p-2 border border-gray-300 rounded" id="password" name="password" placeholder="Enter your password" type="password"/>
+     </div>
+     <div class="flex items-center justify-between mb-4">
+      <div class="flex items-center">
+       <input class="mr-2 leading-tight" id="remember_me" type="checkbox"/>
+       <label class="text-sm text-gray-700" for="remember_me">
+        Remember me
+       </label>
+      </div>
+      <a class="text-sm text-blue-600 hover:underline" href="#">
+       Forgot Password?
+      </a>
+     </div>
+     <button class="w-full bg-blue-600 text-white p-2 rounded hover:bg-blue-700" type="submit">
+      Sign In
+     </button>
+    </form>
+    <div class="text-center my-4">
+     <p class="text-gray-700">
+      Or sign in with
+     </p>
+     <div class="flex justify-center space-x-4 mt-2">
+      <button class="bg-red-600 text-white p-2 rounded hover:bg-red-700" onclick="signInWithGoogle()">
+       <i class="fab fa-google">
+       </i>
+       Google
+      </button>
+      <button class="bg-blue-800 text-white p-2 rounded hover:bg-blue-900" onclick="signInWithFacebook()">
+       <i class="fab fa-facebook-f">
+       </i>
+       Facebook
+      </button>
+     </div>
+    </div>
+    <p class="text-center text-gray-700 mt-4">
+     Don't have an account?
+     <a class="text-blue-600 hover:underline" href="#">
+      Sign Up
+     </a>
+    </p>
+   </section>
+  </main>
+  <div class="hidden container mx-auto p-4" id="language-selection">
+   <section class="max-w-md mx-auto bg-white p-6 rounded shadow-md">
+    <button class="text-blue-600 hover:underline mb-4" onclick="goBackToAuth()">
+     <i class="fas fa-arrow-left">
+     </i>
+     Back
+    </button>
+    <h2 class="text-xl font-bold mb-4">
+     Select a Language to Learn
+    </h2>
+    <div class="grid grid-cols-2 gap-4">
+     <div class="text-center">
+      <img alt="Flag of the United States" class="w-16 h-16 mx-auto mb-2" height="64" onclick="showLessonStructure('English')" src="https://storage.googleapis.com/a1aa/image/HzoWW1OQPDtfI08djJHulXJten-9BLyh-MVPMR-4878.jpg" width="64"/>
+      <button class="bg-blue-600 text-white p-2 rounded hover:bg-blue-700 w-full" onclick="showLessonStructure('English')">
+       English
+      </button>
+     </div>
+     <div class="text-center">
+      <img alt="Flag of Spain" class="w-16 h-16 mx-auto mb-2" height="64" onclick="showLessonStructure('Spanish')" src="https://storage.googleapis.com/a1aa/image/hk3OGPb_8iuu_mbs2CK1IeyTg-ZGlEzkGjwDL5B8GuI.jpg" width="64"/>
+      <button class="bg-blue-600 text-white p-2 rounded hover:bg-blue-700 w-full" onclick="showLessonStructure('Spanish')">
+       Spanish
+      </button>
+     </div>
+     <div class="text-center">
+      <img alt="Flag of France" class="w-16 h-16 mx-auto mb-2" height="64" onclick="showLessonStructure('French')" src="https://storage.googleapis.com/a1aa/image/7xWIkuf5_nqOo-jGM0300dcjGGJffwu3uHCzf6uFBV4.jpg" width="64"/>
+      <button class="bg-blue-600 text-white p-2 rounded hover:bg-blue-700 w-full" onclick="showLessonStructure('French')">
+       French
+      </button>
+     </div>
+     <div class="text-center">
+      <img alt="Flag of Germany" class="w-16 h-16 mx-auto mb-2" height="64" onclick="showLessonStructure('German')" src="https://storage.googleapis.com/a1aa/image/ZxqYdiJl6DYRuM1puMR5khbUlOhBjUotdyFxotvN8y8.jpg" width="64"/>
+      <button class="bg-blue-600 text-white p-2 rounded hover:bg-blue-700 w-full" onclick="showLessonStructure('German')">
+       German
+      </button>
+     </div>
+     <div class="text-center">
+      <img alt="Flag of China" class="w-16 h-16 mx-auto mb-2" height="64" onclick="showLessonStructure('Chinese')" src="https://storage.googleapis.com/a1aa/image/f3R7z0T9J89Tsu9j_pLdLBvZtbywiZdJAyjhbZtD6PU.jpg" width="64"/>
+      <button class="bg-blue-600 text-white p-2 rounded hover:bg-blue-700 w-full" onclick="showLessonStructure('Chinese')">
+       Chinese
+      </button>
+     </div>
+     <div class="text-center">
+      <img alt="Flag of Japan" class="w-16 h-16 mx-auto mb-2" height="64" onclick="showLessonStructure('Japanese')" src="https://storage.googleapis.com/a1aa/image/JWG4p17gRd-fGcvrAUBRwM0kiFQmkDH4I0_kmtEYGUo.jpg" width="64"/>
+      <button class="bg-blue-600 text-white p-2 rounded hover:bg-blue-700 w-full" onclick="showLessonStructure('Japanese')">
+       Japanese
+      </button>
+     </div>
+    </div>
+   </section>
+  </div>
+  <div class="hidden container mx-auto p-4" id="lesson-structure">
+   <section class="max-w-2xl mx-auto bg-white p-6 rounded shadow-md">
+    <button class="text-blue-600 hover:underline mb-4" onclick="goBackToLanguageSelection()">
+     <i class="fas fa-arrow-left">
+     </i>
+     Back
+    </button>
+    <h2 class="text-xl font-bold mb-4" id="selected-language">
+     Lesson Structure
+    </h2>
+    <div class="mb-4">
+     <h3 class="text-lg font-bold mb-2">
+      Beginner
+     </h3>
+     <ul class="list-disc list-inside">
+      <li>
+       Lesson 1: Basic Phrases
+      </li>
+      <li>
+       Lesson 2: Vocabulary
+      </li>
+      <li>
+       Lesson 3: Grammar
+      </li>
+     </ul>
+    </div>
+    <div class="mb-4">
+     <h3 class="text-lg font-bold mb-2">
+      Intermediate
+     </h3>
+     <ul class="list-disc list-inside">
+      <li>
+       Lesson 4: Conversation
+      </li>
+      <li>
+       Lesson 5: Listening
+      </li>
+      <li>
+       Lesson 6: Writing
+      </li>
+     </ul>
+    </div>
+    <div class="mb-4">
+     <h3 class="text-lg font-bold mb-2">
+      Advanced
+     </h3>
+     <ul class="list-disc list-inside">
+      <li>
+       Lesson 7: Reading
+      </li>
+      <li>
+       Lesson 8: Pronunciation
+      </li>
+      <li>
+       Lesson 9: Practice with a Partner
+      </li>
+     </ul>
+    </div>
+   </section>
+  </div>
+  
+  <script>
+   function signInWithGoogle() {
+     // Placeholder function for Google sign-in
+     alert('Google sign-in clicked');
+   }
+
+   function signInWithFacebook() {
+     // Placeholder function for Facebook sign-in
+     alert('Facebook sign-in clicked');
+   }
+
+   function showLanguageSelection() {
+     document.querySelector('main').classList.add('hidden');
+     document.getElementById('language-selection').classList.remove('hidden');
+   }
+
+   function showLessonStructure(language) {
+     document.getElementById('language-selection').classList.add('hidden');
+     document.getElementById('lesson-structure').classList.remove('hidden');
+     document.getElementById('selected-language').innerText = `Lesson Structure for ${language}`;
+   }
+
+   function goBackToAuth() {
+     document.getElementById('language-selection').classList.add('hidden');
+     document.querySelector('main').classList.remove('hidden');
+   }
+
+   function goBackToLanguageSelection() {
+     document.getElementById('lesson-structure').classList.add('hidden');
+     document.getElementById('language-selection').classList.remove('hidden');
+   }
+  </script>
+ </body>
+</html>
